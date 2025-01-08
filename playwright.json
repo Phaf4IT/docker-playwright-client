@@ -1,4 +1,6 @@
 {
   "port": 9222,
-  "wsPath": "playwright"
+  "wsPath": "playwright",
+  "headless": true,
+  "devtools": true
 }
