@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# Stel de gewenste taal in via omgevingsvariabele LANGUAGE
 if [ -n "$LANGUAGE" ]; then
   echo "Instellen van de locale naar $LANGUAGE"
   case $LANGUAGE in
@@ -28,14 +27,11 @@ else
   export LC_ALL=nl_NL.UTF-8
 fi
 
-# Zorg ervoor dat de locale goed wordt doorgegeven naar Playwright
 export LANG
 export LC_ALL
 
-# Controleer of de juiste locale is ingesteld
 echo "Locale is ingesteld op $LANG"
 
-# Als er een wsPath is, pas de config aan
 if [ -n "$WS_PATH" ]; then
   echo "Instellen van wsPath naar $WS_PATH"
   jq ".wsPath = \"$WS_PATH\"" playwright.json > tmp.json && mv tmp.json playwright.json
@@ -49,7 +45,7 @@ if [ -z "$HOST_PORT" ]; then
   export HOST_PORT=3000
 fi
 
-sed "s/\$HOST_PORT/$HOST_PORT/g" /etc/nginx/nginx.conf > /tmp/nginx.conf && mv /tmp/nginx.conf /etc/nginx/nginx.conf
+sed "s/\$HOST_PORT/$HOST_PORT/g" /etc/nginx/nginx.conf.tpl > /tmp/nginx.conf && mv /tmp/nginx.conf /etc/nginx/nginx.conf
 
 cat /etc/nginx/nginx.conf
 
