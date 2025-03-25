@@ -114,7 +114,6 @@ To connect to the Playwright WebSocket server from your local machine, you can u
 ```bash
 wscat -c ws://localhost:9222/playwright
 ```
-
 Or, if `WS_PATH` is not set and the path is randomly generated, you can retrieve the URL from the container logs or
 inspect the environment variable for the exact path.
 
